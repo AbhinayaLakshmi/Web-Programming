@@ -1,0 +1,87 @@
+TYPE THE CODE
+
+// /controllers/taskController.js
+
+const Task=require('../models/taskModel.js')
+const createTask=async(req,res)=> {
+    try{
+        const {title, completed}=req.body;
+        const task=new Task({title,completed});
+        const newTask=await task.save();
+        res.status(201).json(newTask);
+    }catch (err){
+        res.status(500).json({message:err.message});
+    }
+};
+const getAllTasks=async(req,res)=> {
+    try{
+        const tasks=await Task.find();
+        res.status(200).json(tasks);
+    }catch(err) {
+        res.status(500).json({message:err.message});
+    }
+};
+const getTaskById=async(req,res)=> {
+    try{
+        const {id}=req.params;
+        const task=await Task.findById(req.params.id);
+        if(!task){
+            return res.status(404).json({message:'Task not found'});
+        }
+        res.status(200).json(task);
+    }catch(err) {
+        res.status(500).json({message:err.message});
+    }
+};
+module.exports={createTask, getAllTasks, getTaskById};
+
+
+// /models/taskModels.js
+
+const mongoose = require('mongoose');
+const taskSchema=new mongoose.Schema({
+    title:{type:String, required:[true,'Task title is required']},
+    completed:{type:Boolean, default:false}
+});
+module.exports=mongoose.model('Task', taskSchema);
+
+
+// /routers/taskRoutes.js
+
+const express=require('express');
+const router=express.Router();
+const {
+    createTask,
+    getAllTasks,
+    getTaskById,
+} = require('../controllers/taskController');
+router.post('/tasks',createTask);
+router.get('/tasks',getAllTasks);
+router.get('/tasks/:id', getTaskById);
+module.exports=router;
+
+
+// index.js
+
+const express=require('express');
+const mongoose=require('mongoose');
+const taskRoutes=require('./routers/taskRoutes');
+const app=express();
+const PORT=8080;
+app.use(express.json());
+app.use('/',taskRoutes);
+mongoose.connect('mongodb://127.0.0.1:27017/appdb', {
+    useNewUrlParser:true,
+    useUnifiedTopology:true,
+})
+.then(()=> {
+    console.log('Connected to MongoDB');
+    app.listen(PORT, ()=> {
+        console.log(`Server is running on port ${PORT}`);
+    });
+})
+.catch((err)=> {
+    console.error('MongoDB connection error:',err);
+});
+
+

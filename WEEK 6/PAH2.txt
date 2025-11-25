@@ -1,0 +1,121 @@
+PRACTICE AT HOME 2
+
+// /controllers/movieController.js
+
+const Movie=require("../models/movieModel");
+exports.createMovie=async(req,res) => {
+    try{
+        const movie=new Movie(req.body);
+        const savedMovie=await movie.save();
+        res.status(201).json(savedMovie);
+    }catch(error){
+        res.status(500).json({message:error.message});
+    }
+};
+exports.getAllMovies=async(req,res) => {
+    try{
+        const movies=await Movie.find();
+        res.status(200).json(movies);
+    }catch(error) {
+        res.status(500).json({message:error.message});
+    }
+};
+exports.getMovieById=async(req,res) => {
+    try{
+        const movie=await Movie.findById(req.params.id);
+        if(!movie){
+            return res.status(404).json({message:"Movie not found"});
+        }
+        res.status(200).json(movie);
+    }catch(error) {
+        res.status(500).json({message:error.message});
+    }
+};
+exports.updateMovie=async(req,res) => {
+    try{
+        const updatedMovie=await Movie.findByIdAndUpdate(req.params.id,req.body, {
+            new:true,
+            runValidators:true,
+        });
+        if(!updatedMovie){
+            return res.status(404).json({message:"Movie not found"});
+        }
+        res.status(200).json(updatedMovie);
+    }catch(error){
+        res.status(500).json({message:error.message});
+    }
+};
+exports.deleteMovie=async(req,res) => {
+    try{
+        const deletedMovie=await Movie.findByIdAndDelete(req.params.id);
+        if(!deletedMovie){
+            return res.status(404).json({message:"Movie not found"});
+        }
+        res.status(200).json({message:"Movie deleted successfully"});
+    }catch(error){
+        res.status(500).json({message:error.message});
+    }
+};
+
+// /models/movieModel.js
+
+const mongoose=require("mongoose");
+const movieSchema=new mongoose.Schema({
+    title: {
+        type:String,
+        required:[true, "Movie title is requied"],
+    },
+    director: {
+        type:String,
+        required:[true,"Director is required"],
+    },
+    releaseYear: {
+        type:Number,
+        required:[true,"Release year is required"],
+    },
+    genre: {
+        type:String,
+        required:[true,"Genre is required"],
+    },
+});
+const Movie=mongoose.model("Movie",movieSchema);
+module.exports=Movie;
+
+// routers/movieRoutes.js
+
+const express=require("express");
+const router=express.Router();
+const {
+    getMovieById,
+    updateMovieById,
+    deleteMovieById,
+} = require("../controllers/movieController");
+router.get("/movies/:id",getMovieById);
+router.put("/movies/:id",updateMovieById);
+router.delete("/movies/:id",deleteMovieById);
+module.exports=router;
+
+//index.js
+
+const express=require("express");
+const mongoose=require("mongoose");
+const movieRoutes=require("./routers/movieRoutes");
+const app=express();
+app.use(express.json());
+mongoose
+  .connect("mongodb://localhost:27017/movies",{
+    useNewUrlParser:true,
+    useUnifiedTopology:true,
+  })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.log(err));
+app.use("/",movieRoutes);
+app.use((err,req,res,next) => {
+    console.error(err.stack);
+    res.status(500).json({error:"Something went wrong!"});
+});
+const PORT=process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
