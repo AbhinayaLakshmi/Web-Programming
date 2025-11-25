@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us Web Page</title>
+
+    <style>
+        header {
+            background-color: rgb(0,115,230);
+            padding: 16px;
+            margin-bottom: 0;
+        }
+
+        header h1 {
+            color: white;
+            text-align: center;
+        }
+
+        nav {
+            background-color: rgb(77,146,215);
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul a {
+            text-decoration: none;
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .contact-form {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 0.75rem;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        input {
+            border: none;
+            margin: 10px 0;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+        }
+
+        button {
+            text-align: center;
+            color: white;
+            background-color: rgb(0,115,230);
+            border: none;
+            border-radius: 0.2rem;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: rgb(0,95,190);
+        }
+
+        footer {
+            margin-top: 7%;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            background-color: rgb(0,115,230);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Contact Us</h1>
+    </header>
+
+    <nav class="navcont">
+        <ul class="ultext">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="container">
+        <h1>Get in Touch</h1>
+        <p>Feel free to reach out to us for any queries or feedback.</p>
+
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name">
+            <input type="email" placeholder="Your Email">
+            <input type="text" placeholder="Your Message">
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2024 Online Store. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

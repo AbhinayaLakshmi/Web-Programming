@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card</title>
+
+    <style>
+        /* Custom styles here */
+        .profile-card {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 0.75rem;
+            margin: 0px;
+            overflow: hidden;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .headerClass {
+            color: white;
+            background-color: rgb(76, 174, 79);
+            width: 97vw;
+            text-align: center;
+            border-radius: 0.75rem;
+            padding: 20px;
+            margin-top: 0px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        .button {
+            background-color: rgb(76, 174, 79);
+            color: white;
+            border-radius: 0.5rem;
+            border: none;
+            padding: 8px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .button:hover {
+            background-color: rgb(69, 170, 63);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profile-card">
+        <header class="headerClass">
+            <h2>John Doe</h2>
+        </header>
+
+        <section>
+            <p>Web Developer at XYZ Company.</p>
+            <p>Loves coding and coffee.</p>
+        </section>
+
+        <button class="button">
+            Contact
+        </button>
+    </div>
+</body>
+</html>

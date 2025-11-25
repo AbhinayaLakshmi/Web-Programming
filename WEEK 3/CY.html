@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Introduction Project</title>
+
+    <style>
+        body {
+            background-color: rgb(52, 73, 94);
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: rgb(44, 62, 80);
+            display: flex;
+            justify-content: center;
+            padding: 1%;
+            margin-bottom: 2%;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            margin-left: 10%;
+            color: white;
+            padding: 0.5%;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            background-color: rgb(157, 238, 37);
+            color: black;
+        }
+
+        .card {
+            background-color: white;
+            padding: 1.5rem;
+            width: 80%;
+            margin: auto;
+            border-radius: 8px;
+        }
+
+        .heading {
+            color: rgb(192, 57, 43);
+        }
+
+        .subheading {
+            color: rgb(41, 128, 185);
+            margin-top: 20px;
+        }
+
+        .code-block {
+            background-color: gainsboro;
+            padding: 10px;
+            border-radius: 5px;
+            width: fit-content;
+        }
+
+        .footer {
+            margin-top: 4%;
+            background-color: rgb(44, 62, 80);
+            text-align: center;
+            color: white;
+            padding: 1%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="#introduction">Introduction</a>
+        <a href="#csssyntax">CSS Syntax</a>
+        <a href="#cssproperties">CSS Properties</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section class="card" id="introduction">
+            <h2 class="heading">Introduction to CSS</h2>
+
+            <p>
+                CSS stands for 
+                <span style="color: rgb(237, 185, 89);">Cascading Style Sheets</span>.
+                It is used to style and layout web pages. CSS allows you
+                to apply styles to 
+                <span style="font-weight: bold;">web pages</span>
+                independently of the structure (HTML).
+            </p>
+
+            <h3 class="subheading" id="csssyntax">CSS Syntax</h3>
+            <p>The syntax of CSS consists of a selector and a declaration block.</p>
+
+            <div class="code-block">
+                <p>selector {</p>
+                <p>&nbsp;&nbsp;property: value;</p>
+                <p>}</p>
+            </div>
+
+            <h3 class="subheading" id="cssproperties">CSS Properties</h3>
+            <p>
+                CSS includes many properties. For example, the 
+                <span style="color: rgb(247, 67, 67);">color</span> 
+                property defines text color, and the 
+                <span style="color: rgb(247, 67, 67);">font-size</span> 
+                property defines the size of the text.
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 CSS Introduction Project</p>
+    </footer>
+
+</body>
+</html>
